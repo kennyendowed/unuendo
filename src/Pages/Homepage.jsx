@@ -56,6 +56,16 @@ function Homepage(){
     try{
       const response = await axios.post(API_URL + "LogUserIN", payload)
       console.log(response)
+      if(response.data.code === 200) {
+
+        Swal.fire({
+          title: 'Success!',
+          text: response.data.data,
+          icon: 'success',
+        
+        })
+      }
+      console.log(response.data.data)
     }
     catch(error){
          console.log(error)
@@ -71,8 +81,9 @@ function Homepage(){
       className='h-[100px] w-[100%] md:h-screen'
     />
       <form onSubmit={Submit}>
-       <div className=' w-[80%] md:w-[60%] mx-auto pt-[10%]'>
-       <h1 className='text-4xl text-[#9370db] '>Register</h1>
+       <div className=' w-[80%] md:w-[55%] mx-auto pt-[10%]'>
+       <h1 className='text-3xl text-[#9370db] '>Register</h1>
+       <p className='text-gray-400 mt-[2%]'>Complete the form below to register </p>
         <Input
           value = {details.customerName}
           type = "text"
@@ -91,7 +102,7 @@ function Homepage(){
        />
          <Input
           value = {details.phoneNumber}
-          type = "text"
+          type = "number"
           placeholder='Phone Number'
          label = "Phone Number"
          name = "phoneNumber"
@@ -133,10 +144,10 @@ function Homepage(){
        
         <button 
         // type ="submit"
-        className='bg-[#9370db] w-[100%] h-[50px] mt-[10%]'
+        className='bg-[#9370db] w-[50%] h-[50px] mt-[10%] text-white rounded  hover:opacity-75 active:ring-1 active:ring-black  active:ring-offset-1 duration-300'
         
         >
-        {loading ? <PulseLoader color = "#9370db"/> :"Submit"}
+        {loading ? <PulseLoader color = "#ffff"/> :"Submit"}
         </button>
        
        </div>
